@@ -24,5 +24,6 @@ class NoteViewController: UIViewController {
 extension NoteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         note.content = textView.text
+        CloudNoteHelper.shared.syncToCloud(note: note)
     }
 }

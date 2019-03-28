@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CloudKit
 
 class Note {
     
     let title: String
     var content: String?
+    var recordID: CKRecord.ID?
     
     init(title: String) {
         self.title = title

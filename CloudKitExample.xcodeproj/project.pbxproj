@@ -7,19 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40559ED4224B894A008A7192 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40559ED3224B894A008A7192 /* Note.swift */; };
 		40CAB121224B67FF00527DF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB120224B67FF00527DF4 /* AppDelegate.swift */; };
 		40CAB126224B67FF00527DF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CAB124224B67FF00527DF4 /* Main.storyboard */; };
 		40CAB128224B680200527DF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CAB127224B680200527DF4 /* Assets.xcassets */; };
 		40CAB12B224B680200527DF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CAB129224B680200527DF4 /* LaunchScreen.storyboard */; };
 		40CAB135224B6B9300527DF4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CAB134224B6B9300527DF4 /* CloudKit.framework */; };
-		40CAB137224B70B900527DF4 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB136224B70B900527DF4 /* CloudKitHelper.swift */; };
 		40CAB139224B883300527DF4 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB138224B883300527DF4 /* NoteViewController.swift */; };
 		40CAB13B224B885000527DF4 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB13A224B885000527DF4 /* NotesTableViewController.swift */; };
+		40F12F21224C84E100AF8DC2 /* CloudNoteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F12F20224C84E100AF8DC2 /* CloudNoteHelper.swift */; };
+		40F12F25224CB0F600AF8DC2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F12F24224CB0F600AF8DC2 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		40559ED3224B894A008A7192 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		40CAB11D224B67FF00527DF4 /* CloudKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CAB120224B67FF00527DF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40CAB125224B67FF00527DF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,9 +27,10 @@
 		40CAB12C224B680200527DF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40CAB132224B6B9000527DF4 /* CloudKitExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CloudKitExample.entitlements; path = CloudKitExample/CloudKitExample.entitlements; sourceTree = "<group>"; };
 		40CAB134224B6B9300527DF4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		40CAB136224B70B900527DF4 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
 		40CAB138224B883300527DF4 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		40CAB13A224B885000527DF4 /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
+		40F12F20224C84E100AF8DC2 /* CloudNoteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudNoteHelper.swift; sourceTree = "<group>"; };
+		40F12F24224CB0F600AF8DC2 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 		40559ED2224B8929008A7192 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				40559ED3224B894A008A7192 /* Note.swift */,
+				40F12F24224CB0F600AF8DC2 /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				40559ED2224B8929008A7192 /* Model */,
-				40CAB136224B70B900527DF4 /* CloudKitHelper.swift */,
+				40F12F20224C84E100AF8DC2 /* CloudNoteHelper.swift */,
 				40CAB120224B67FF00527DF4 /* AppDelegate.swift */,
 				40CAB13A224B885000527DF4 /* NotesTableViewController.swift */,
 				40CAB138224B883300527DF4 /* NoteViewController.swift */,
@@ -177,11 +177,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40559ED4224B894A008A7192 /* Note.swift in Sources */,
 				40CAB121224B67FF00527DF4 /* AppDelegate.swift in Sources */,
 				40CAB13B224B885000527DF4 /* NotesTableViewController.swift in Sources */,
 				40CAB139224B883300527DF4 /* NoteViewController.swift in Sources */,
-				40CAB137224B70B900527DF4 /* CloudKitHelper.swift in Sources */,
+				40F12F21224C84E100AF8DC2 /* CloudNoteHelper.swift in Sources */,
+				40F12F25224CB0F600AF8DC2 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +331,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AZ5GBDWZ9H;
 				INFOPLIST_FILE = CloudKitExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,6 +351,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AZ5GBDWZ9H;
 				INFOPLIST_FILE = CloudKitExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

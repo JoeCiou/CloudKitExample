@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let notification = CKNotification(fromRemoteNotificationDictionary: userInfo) {
             if notification.subscriptionID == "NoteInfo" {
-                CloudKitHelper.shared.fetchNoteInfo {
+                CloudNoteHelper.shared.fetchNoteInfo {
                     completionHandler(UIBackgroundFetchResult.newData)
                 }
             }

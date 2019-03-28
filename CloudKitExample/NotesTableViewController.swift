@@ -14,6 +14,19 @@ class NotesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CloudNoteHelper.shared.accountStatus { (status, error) in
+            guard error == nil else {
+                print("Account status error: \(error!.localizedDescription)")
+                return
+            }
+            
+            if status == .noAccount {
+                let alert = UIAlertController(title: "Sign in to iCloud", message: "Sign in to your iCloud account to write records. On the Home screen, launch Settings, tap iCloud, and enter your Apple ID. Turn iCloud Drive on. If you don't have an iCloud account, tap Create a new Apple ID.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
 
     }
 
@@ -28,7 +41,9 @@ class NotesTableViewController: UITableViewController {
                 return
             }
             
-            self.notes.append(Note(title: title))
+            let note = Note(title: title)
+            self.notes.append(note)
+            CloudNoteHelper.shared.syncToCloud(note: note)
             self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
