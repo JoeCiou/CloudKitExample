@@ -1,5 +1,5 @@
 //
-//  NotesTableViewController.swift
+//  NoteListTableViewController.swift
 //  CloudKitExample
 //
 //  Created by Joe Ciou on 2019/3/27.
@@ -8,14 +8,21 @@
 
 import UIKit
 
-class NotesTableViewController: UITableViewController {
-
-    var notes: [Note] = []
+class NoteListTableViewController: UITableViewController {
+    
+    private var notes: [Note] {
+        return noteStorage.notes
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CloudNoteHelper.shared.accountStatus { (status, error) in
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotesChanged),
+                                               name: NoteStorage.NoteChangedNotificationName,
+                                               object: nil)
+        
+        NoteCloudSynchronizer.accountStatus { (status, error) in
             guard error == nil else {
                 print("Account status error: \(error!.localizedDescription)")
                 return
@@ -27,7 +34,12 @@ class NotesTableViewController: UITableViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-
+    }
+    
+    @objc func handleNotesChanged() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     @IBAction func handleAddClick(_ sender: Any) {
@@ -41,10 +53,7 @@ class NotesTableViewController: UITableViewController {
                 return
             }
             
-            let note = Note(title: title)
-            self.notes.append(note)
-            CloudNoteHelper.shared.syncToCloud(note: note)
-            self.tableView.reloadData()
+            noteStorage.createNote(title: title)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(createAction)

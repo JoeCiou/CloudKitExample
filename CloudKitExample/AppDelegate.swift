@@ -9,12 +9,16 @@
 import UIKit
 import CloudKit
 
+let noteStorage = NoteStorage()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -45,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let notification = CKNotification(fromRemoteNotificationDictionary: userInfo) {
             if notification.subscriptionID == "NoteInfo" {
-                CloudNoteHelper.shared.fetchNoteInfo {
+                noteStorage.fetchNotes {
                     completionHandler(UIBackgroundFetchResult.newData)
                 }
             }

@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		409789212250A765002B006A /* NoteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409789202250A764002B006A /* NoteListTableViewController.swift */; };
+		409789232250A842002B006A /* NoteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409789222250A842002B006A /* NoteStorage.swift */; };
 		40CAB121224B67FF00527DF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB120224B67FF00527DF4 /* AppDelegate.swift */; };
 		40CAB126224B67FF00527DF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CAB124224B67FF00527DF4 /* Main.storyboard */; };
 		40CAB128224B680200527DF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CAB127224B680200527DF4 /* Assets.xcassets */; };
 		40CAB12B224B680200527DF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40CAB129224B680200527DF4 /* LaunchScreen.storyboard */; };
 		40CAB135224B6B9300527DF4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CAB134224B6B9300527DF4 /* CloudKit.framework */; };
 		40CAB139224B883300527DF4 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB138224B883300527DF4 /* NoteViewController.swift */; };
-		40CAB13B224B885000527DF4 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CAB13A224B885000527DF4 /* NotesTableViewController.swift */; };
-		40F12F21224C84E100AF8DC2 /* CloudNoteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F12F20224C84E100AF8DC2 /* CloudNoteHelper.swift */; };
+		40E05F6A2250912D0052FC65 /* NoteCloudSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E05F692250912C0052FC65 /* NoteCloudSynchronizer.swift */; };
 		40F12F25224CB0F600AF8DC2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F12F24224CB0F600AF8DC2 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		409789202250A764002B006A /* NoteListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteListTableViewController.swift; sourceTree = "<group>"; };
+		409789222250A842002B006A /* NoteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStorage.swift; sourceTree = "<group>"; };
 		40CAB11D224B67FF00527DF4 /* CloudKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CAB120224B67FF00527DF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40CAB125224B67FF00527DF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,8 +31,7 @@
 		40CAB132224B6B9000527DF4 /* CloudKitExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CloudKitExample.entitlements; path = CloudKitExample/CloudKitExample.entitlements; sourceTree = "<group>"; };
 		40CAB134224B6B9300527DF4 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		40CAB138224B883300527DF4 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
-		40CAB13A224B885000527DF4 /* NotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
-		40F12F20224C84E100AF8DC2 /* CloudNoteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudNoteHelper.swift; sourceTree = "<group>"; };
+		40E05F692250912C0052FC65 /* NoteCloudSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCloudSynchronizer.swift; sourceTree = "<group>"; };
 		40F12F24224CB0F600AF8DC2 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,12 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		40559ED2224B8929008A7192 /* Model */ = {
+		40559ED2224B8929008A7192 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				40F12F24224CB0F600AF8DC2 /* Note.swift */,
+				40E05F692250912C0052FC65 /* NoteCloudSynchronizer.swift */,
+				409789222250A842002B006A /* NoteStorage.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		40CAB114224B67FF00527DF4 = {
@@ -74,10 +78,9 @@
 		40CAB11F224B67FF00527DF4 /* CloudKitExample */ = {
 			isa = PBXGroup;
 			children = (
-				40559ED2224B8929008A7192 /* Model */,
-				40F12F20224C84E100AF8DC2 /* CloudNoteHelper.swift */,
+				40559ED2224B8929008A7192 /* Models */,
 				40CAB120224B67FF00527DF4 /* AppDelegate.swift */,
-				40CAB13A224B885000527DF4 /* NotesTableViewController.swift */,
+				409789202250A764002B006A /* NoteListTableViewController.swift */,
 				40CAB138224B883300527DF4 /* NoteViewController.swift */,
 				40CAB124224B67FF00527DF4 /* Main.storyboard */,
 				40CAB127224B680200527DF4 /* Assets.xcassets */,
@@ -178,10 +181,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				40CAB121224B67FF00527DF4 /* AppDelegate.swift in Sources */,
-				40CAB13B224B885000527DF4 /* NotesTableViewController.swift in Sources */,
+				40E05F6A2250912D0052FC65 /* NoteCloudSynchronizer.swift in Sources */,
+				409789212250A765002B006A /* NoteListTableViewController.swift in Sources */,
 				40CAB139224B883300527DF4 /* NoteViewController.swift in Sources */,
-				40F12F21224C84E100AF8DC2 /* CloudNoteHelper.swift in Sources */,
 				40F12F25224CB0F600AF8DC2 /* Note.swift in Sources */,
+				409789232250A842002B006A /* NoteStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
