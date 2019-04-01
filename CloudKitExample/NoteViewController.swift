@@ -10,7 +10,7 @@ import UIKit
 
 class NoteViewController: UIViewController {
 
-    var note: Note!
+    weak var note: Note!
     @IBOutlet weak var contentTextView: UITextView!
     
     override func viewDidLoad() {
@@ -28,15 +28,32 @@ class NoteViewController: UIViewController {
                                                object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        contentTextView.becomeFirstResponder()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
     
+    @IBAction func handleTrashClick(_ sender: Any) {
+        noteStorage.deleteNote(&note)
+    }
+    
     @objc func handleNotesChanged() {
         DispatchQueue.main.async {
-            self.navigationItem.title = self.note.title
-            self.contentTextView.text = self.note.content
+            if let note = self.note {
+                self.navigationItem.title = note.title
+                self.contentTextView.text = note.content
+            } else {
+                let alert = UIAlertController(title: "Warning", message: "This note has been deleted", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }

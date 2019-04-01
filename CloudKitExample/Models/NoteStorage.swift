@@ -42,6 +42,13 @@ class NoteStorage: NSObject {
     func fetchNotes(callback: (() -> Void)?) {
         cloudSynchronizer.fetchNotes(callback)
     }
+    
+    func deleteNote(_ note: inout Note!) {
+        notes.remove(at: notes.firstIndex(of: note)!)
+        cloudSynchronizer.deleteNote(note)
+        note = nil
+        NotificationCenter.default.post(name: NoteStorage.NoteChangedNotificationName, object: nil)
+    }
 }
 
 extension NoteStorage: NoteCloudSynchronizerDelegate {
@@ -74,5 +81,9 @@ extension NoteStorage: NoteCloudSynchronizerDelegate {
     
     func noteCloudSynchronizerDidCompleteFetch(_ synchronizer: NoteCloudSynchronizer) {
         NotificationCenter.default.post(name: NoteStorage.NoteChangedNotificationName, object: nil)
+    }
+    
+    func noteCloudSynchronizer(_ synchronizer: NoteCloudSynchronizer, didDeleteNote recordID: CKRecord.ID) {
+        
     }
 }

@@ -22,6 +22,7 @@ private struct UserDefaultsKey {
     @objc optional func noteCloudSynchronizer(_ synchronizer: NoteCloudSynchronizer, didFetchNoteChange record: CKRecord)
     @objc optional func noteCloudSynchronizer(_ synchronizer: NoteCloudSynchronizer, didFetchDelete recordID: CKRecord.ID)
     @objc optional func noteCloudSynchronizerDidCompleteFetch(_ synchronizer: NoteCloudSynchronizer)
+    @objc optional func noteCloudSynchronizer(_ synchronizer: NoteCloudSynchronizer, didDeleteNote recordID: CKRecord.ID)
 }
 
 class NoteCloudSynchronizer: NSObject {
@@ -197,7 +198,7 @@ class NoteCloudSynchronizer: NSObject {
             print("recordZoneFetchCompletionBlock - recorZoneID: \(recordZoneID), token: \(token), data: \(data), more: \(more)")
             guard error == nil else {
                 let error = error as! CKError
-                NoteCloudSynchronizer.errorHandler(error, taskName: "Fetch record zone changes", retryBlock: {
+                NoteCloudSynchronizer.errorHandler(error, taskName: "Record zone fetch changes", retryBlock: {
                     self?.fetchNotes(callback)
                 })
                 return
@@ -214,7 +215,7 @@ class NoteCloudSynchronizer: NSObject {
             print("fetchRecordZoneChangesCompletionBlock")
             guard error == nil else {
                 let error = error as! CKError
-                NoteCloudSynchronizer.errorHandler(error, taskName: "Fetch record zone changes", retryBlock: {
+                NoteCloudSynchronizer.errorHandler(error, taskName: "Record zone fetch changes", retryBlock: {
                     self?.fetchNotes(callback)
                 })
                 return
@@ -224,5 +225,22 @@ class NoteCloudSynchronizer: NSObject {
         }
         changesOperation.qualityOfService = .userInitiated
         privateDB.add(changesOperation)
+    }
+    
+    func deleteNote(_ note: Note) {
+        guard let recordID = note.recordID else {
+            return
+        }
+        privateDB.delete(withRecordID: recordID) { [weak self] deletedRecordID, error in
+            guard let deletedRecordID = deletedRecordID, error == nil else {
+                let error = error as! CKError
+                NoteCloudSynchronizer.errorHandler(error, taskName: "Record delete", retryBlock: {
+                    self?.deleteNote(note)
+                })
+                return
+            }
+            
+            self?.delegate?.noteCloudSynchronizer?(self!, didDeleteNote: deletedRecordID)
+        }
     }
 }
