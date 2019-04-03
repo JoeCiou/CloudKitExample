@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CloudKitTest
+//  CloudKitExample
 //
 //  Created by Joe Ciou on 2019/3/27.
 //  Copyright © 2019 Joe Ciou. All rights reserved.

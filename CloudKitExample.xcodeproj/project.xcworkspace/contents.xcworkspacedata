@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/joeciou/programming/ios/sample/CloudKitTest/CloudKitExample.xcodeproj">
+      location = "self:/Users/joeciou/programming/ios/sample/CloudKitExample/CloudKitExample.xcodeproj">
    </FileRef>
 </Workspace>

@@ -114,7 +114,7 @@
 			dependencies = (
 			);
 			name = CloudKitExample;
-			productName = CloudKitTest;
+			productName = CloudKitExample;
 			productReference = 40CAB11D224B67FF00527DF4 /* CloudKitExample.app */;
 			productType = "com.apple.product-type.application";
 		};
